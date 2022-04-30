@@ -10,7 +10,7 @@ consumer.subscriptions.create("RoomChannel", {
   },
 
   received: function(data) {
-    return alert(data['message']);
+    return $('#messages').append(data['message']);
   },
 
   speak: function() {
@@ -22,7 +22,7 @@ consumer.subscriptions.create("RoomChannel", {
 
 $(document).on('keypress', '[data-behavior~=room_speaker]', function(event) {
   if (event.keyCode === 13) {
-    chatChannel.speak(event.target.value);
+    App.room.speak(event.target.value);
     event.target.value = '';
     return event.preventDefault();
   }
